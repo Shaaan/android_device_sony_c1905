@@ -1,7 +1,7 @@
 USE_CAMERA_STUB := true
 
 # inherit from the proprietary version
--include vendor/sony/xperia/BoardConfigVendor.mk
+-include vendor/sony/C1905/BoardConfigVendor.mk
 
 TARGET_ARCH := arm
 TARGET_NO_BOOTLOADER := true
@@ -24,6 +24,6 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 0x105c0000
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x105c0000
 BOARD_FLASH_BLOCK_SIZE := 131072
 
-TARGET_PREBUILT_KERNEL := device/sony/xperia/kernel
+TARGET_PREBUILT_KERNEL := device/sony/C1905/kernel
 
 BOARD_HAS_NO_SELECT_BUTTON := true
