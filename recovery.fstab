@@ -3,6 +3,6 @@
 /boot			emmc         /dev/block/platform/msm_sdcc.1/by-name/boot
 /system			ext4         /dev/block/mmcblk0p25
 /cache			ext4         /dev/block/mmcblk0p26
-/data			ext4		 /dev/block/mmcblk0p27
-/sdcard			vfat		 /dev/fuse
-/external_sd	ext4		 /dev/block/mmcblk1p1
+/data			ext4	     /dev/block/mmcblk0p27  length=-16384
+/sdcard			vfat         /dev/fuse
+/external_sd     	auto         /dev/block/mmcblk1p1
