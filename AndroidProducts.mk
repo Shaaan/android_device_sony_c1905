@@ -1,2 +1,2 @@
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/device_xperia.mk
+    $(LOCAL_DIR)/full_C1905.mk
