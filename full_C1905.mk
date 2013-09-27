@@ -31,6 +31,8 @@ $(call inherit-product-if-exists, vendor/sony/C1905/C1905-vendor.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/sony/C1905/overlay
 
+$(call inherit-product, device/sony/C1905/C1905.mk)
+
 LOCAL_PATH := device/sony/C1905
 ifeq ($(TARGET_PREBUILT_KERNEL),)
 	LOCAL_KERNEL := $(LOCAL_PATH)/kernel

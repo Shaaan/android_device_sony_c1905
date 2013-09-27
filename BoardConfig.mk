@@ -24,6 +24,8 @@ TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DQCOM_SONY_HARDWARE
 
 # Kernel Info
+#TARGET_KERNEL_SOURCE := ~/kernel
+#TARGET_KERNEL_CONFIG := kangbang_defconfig
 BOARD_KERNEL_CMDLINE := device/sony/C1905/config/cmdline.txt
 BOARD_KERNEL_BASE := 0x00660000
 BOARD_KERNEL_PAGESIZE := 2048
@@ -46,5 +48,11 @@ TARGET_PREBUILT_KERNEL := device/sony/C1905/kernel
 
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_HAS_NO_SELECT_BUTTON := true
+
+# Custom Boot
+BOARD_CUSTOM_BOOTIMG_MK := device/sony/C1905/custombootimg.mk
+TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/sony/C1905/releasetools/semc_ota_from_target_files
+
+TARGET_RECOVERY_INITRC := device/sony/C1905/recovery/init.rc
 
 TARGET_OTA_ASSERT_DEVICE := C1905
