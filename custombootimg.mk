@@ -26,12 +26,12 @@ $(INSTALLED_BOOTIMAGE_TARGET): $(PRODUCT_OUT)/kernel $(uncompressed_ramdisk) $(r
 
 	$(hide) $(MKBOOTFS) $(PRODUCT_OUT)/combinedroot/ > $(PRODUCT_OUT)/combinedroot.cpio
 	$(hide) cat $(PRODUCT_OUT)/combinedroot.cpio | gzip > $(PRODUCT_OUT)/combinedroot.fs
-	$(hide) python $(MKELF) -o $@ $(PRODUCT_OUT)/kernel@$(BOARD_FORCE_BOOT_ADDRESS) $(PRODUCT_OUT)/combinedroot.fs@$(BOARD_FORCE_RAMDISK_ADDRESS),ramdisk $(BOARD_KERNEL_CMDLINE)@cmdline
+	$(hide) python $(MKELF) -o $@ $(PRODUCT_OUT)/kernel@$(BOARD_FORCE_BOOT_ADDRESS) $(PRODUCT_OUT)/combinedroot.fs@$(BOARD_MKBOOTIMG_ARGS),ramdisk $(BOARD_KERNEL_CMDLINE)@cmdline
 
 INSTALLED_RECOVERYIMAGE_TARGET := $(PRODUCT_OUT)/recovery.img
 $(INSTALLED_RECOVERYIMAGE_TARGET): $(MKBOOTIMG) \
 	$(recovery_ramdisk) \
 	$(recovery_kernel)
 	@echo ----- Making recovery image ------
-	$(hide) python $(MKELF) -o $@ $(PRODUCT_OUT)/kernel@$(BOARD_FORCE_BOOT_ADDRESS) $(PRODUCT_OUT)/ramdisk-recovery.img@$(BOARD_FORCE_RAMDISK_ADDRESS),ramdisk $(BOARD_KERNEL_CMDLINE)@cmdline
+	$(hide) python $(MKELF) -o $@ $(PRODUCT_OUT)/kernel@$(BOARD_FORCE_BOOT_ADDRESS) $(PRODUCT_OUT)/ramdisk-recovery.img@$(BOARD_MKBOOTIMG_ARGS),ramdisk $(BOARD_KERNEL_CMDLINE)@cmdline
 	@echo ----- Made recovery image -------- $@

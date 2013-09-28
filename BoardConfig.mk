@@ -29,6 +29,8 @@ COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DQCOM_SONY_HARDWARE
 BOARD_KERNEL_CMDLINE := device/sony/C1905/config/cmdline.txt
 BOARD_KERNEL_BASE := 0x00660000
 BOARD_KERNEL_PAGESIZE := 2048
+BOARD_FORCE_BOOT_ADDRESS := 0x80208000
+BOARD_MKBOOTIMG_ARGS := 0x82200000
 
 # fix this up by examining /proc/mtd on a running device
 BOARD_BOOTIMAGE_PARTITION_SIZE := 0x105c0000
@@ -52,7 +54,7 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 # Custom Boot
 BOARD_CUSTOM_BOOTIMG_MK := device/sony/C1905/custombootimg.mk
 TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/sony/C1905/releasetools/semc_ota_from_target_files
-
+BOARD_CUSTOM_RECOVERY_KEYMAPPING := device/sony/C1905/recovery/recovery-keys.c
 TARGET_RECOVERY_INITRC := device/sony/C1905/recovery/init.rc
 
 TARGET_OTA_ASSERT_DEVICE := C1905
