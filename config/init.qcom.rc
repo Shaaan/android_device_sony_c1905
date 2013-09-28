@@ -161,6 +161,13 @@ on boot
     # an ack packet comes out of order
     write /proc/sys/net/netfilter/nf_conntrack_tcp_be_liberal 1
 
+on fs
+	mount_all fstab.st-ericsson
+	
+	# recovery must start from here because system partition is
+    # sometimes busy and fail to unmount trought bootrec!
+    exec /sbin/init.sh
+
 # import cne init file
 on post-fs
     export_rc /persist/init.cne.rc
