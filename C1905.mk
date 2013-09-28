@@ -30,9 +30,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/sony/C1905/prebuilt/logo.rle:root/logo.rle
 	
-# USB function switching
+# Custom Init's
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/config/init.qcom.usb.rc:root/init.qcom.usb.rc
+	$(LOCAL_PATH)/config/init.qcom.rc:root/init.qcom.rc
 	
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/config/fstab.qcom:root/fstab.qcom
