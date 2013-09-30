@@ -1,1 +1,0 @@
-console=ttyHSL0,115200,n8 androidboot.hardware=qcom u androidboot.emmc=true androidboot.bootloader=s1 androidboot.serialno=YT910ARGX4 androidboot.baseband=msm

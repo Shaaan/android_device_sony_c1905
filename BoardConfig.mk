@@ -1,60 +1,29 @@
-USE_CAMERA_STUB := true
+#inherit from the common blue definitions
+-include device/sony/blue-common/BoardConfigCommon.mk
 
-# inherit from the proprietary version
--include vendor/sony/C1905/BoardConfigVendor.mk
+TARGET_SPECIFIC_HEADER_PATH += device/sony/nicki/include
 
-#TARGET_NO_BOOTLOADER := true
-#TARGET_NO_RADIOIMAGE := true
-BOARD_HAS_NO_MISC_PARTITION := true
-
-# Platform
-TARGET_BOOTLOADER_BOARD_NAME := MSM8227
-TARGET_BOARD_PLATFORM := msm8960
-TARGET_BOARD_PLATFORM_GPU := qcom-adreno305
-
-TARGET_ARCH := arm
-TARGET_CPU_ABI := armeabi-v7a
-TARGET_CPU_ABI2 := armeabi
-TARGET_ARCH_VARIANT := armv7-a-neon
-ARCH_ARM_HAVE_TLS_REGISTER := true
-
-TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
-TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
-
-COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DQCOM_SONY_HARDWARE
-
-# Kernel Info
-TARGET_KERNEL_SOURCE := ~/kernel
 TARGET_KERNEL_CONFIG := kangbang_defconfig
-BOARD_KERNEL_CMDLINE := device/sony/C1905/config/cmdline.txt
-BOARD_KERNEL_BASE := 0x00660000
-BOARD_KERNEL_PAGESIZE := 2048
-BOARD_FORCE_BOOT_ADDRESS := 0x80208000
-BOARD_MKBOOTIMG_ARGS := 0x82200000
 
-# fix this up by examining /proc/mtd on a running device
-BOARD_BOOTIMAGE_PARTITION_SIZE := 0x105c0000
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x105c0000
+# Partition information
+BOARD_VOLD_MAX_PARTITIONS := 18
+
+# the following two sizes are generous guesses
+# since these partitions are not visible
+BOARD_BOOTIMAGE_PARTITION_SIZE := 0x01400000
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x01400000
+
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 0x105c0000
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x105c0000
 BOARD_FLASH_BLOCK_SIZE := 131072
 
-# QCOM hardware
-BOARD_USES_QCOM_HARDWARE := true
-BOARD_USES_QCOM_LIBS := true
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/sony/nicki/bluetooth
 
-# Bluetooth
-BOARD_HAVE_BLUETOOTH := true
-
-#TARGET_PREBUILT_KERNEL := device/sony/C1905/kernel
-
-TARGET_USERIMAGES_USE_EXT4 := true
+# Recovery
 BOARD_HAS_NO_SELECT_BUTTON := true
+TARGET_USERIMAGES_USE_EXT4 := true
 
-# Custom Boot
-BOARD_CUSTOM_BOOTIMG_MK := device/sony/C1905/custombootimg.mk
-TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/sony/C1905/releasetools/semc_ota_from_target_files
-BOARD_CUSTOM_RECOVERY_KEYMAPPING := device/sony/C1905/recovery/recovery-keys.c
-TARGET_RECOVERY_INITRC := device/sony/C1905/recovery/init.rc
+TARGET_OTA_ASSERT_DEVICE := nicki,C1905
 
-TARGET_OTA_ASSERT_DEVICE := C1905
+# inherit from the proprietary version
+-include vendor/sony/nicki/BoardConfigVendor.mk

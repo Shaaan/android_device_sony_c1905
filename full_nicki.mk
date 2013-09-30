@@ -22,32 +22,25 @@
 #
 #
 
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+TARGET_SCREEN_HEIGHT := 845
+TARGET_SCREEN_WIDTH := 480
 
-# The gps config appropriate for this device
-$(call inherit-product, device/common/gps/gps_us_supl.mk)
+# Torch
+PRODUCT_PACKAGES := \
+    Torch
+	
+# Inherit from those products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-$(call inherit-product-if-exists, vendor/sony/C1905/C1905-vendor.mk)
+# Common Sony Resources
+$(call inherit-product, device/sony/common/resources-xhdpi.mk)
 
-DEVICE_PACKAGE_OVERLAYS += device/sony/C1905/overlay
+# Inherit from Nicki
+$(call inherit-product, device/sony/nicki/nicki.mk)
 
-$(call inherit-product, device/sony/C1905/C1905.mk)
-
-LOCAL_PATH := device/sony/C1905
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-	LOCAL_KERNEL := $(LOCAL_PATH)/kernel
-else
-	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-endif
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_KERNEL):kernel
-
-$(call inherit-product, build/target/product/full.mk)
-
-PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
-PRODUCT_NAME := full_C1905
-PRODUCT_DEVICE := C1905
+# Set those variables here to overwrite the inherited values.
+PRODUCT_NAME := full_nicki
+PRODUCT_DEVICE := Nicki
 PRODUCT_BRAND := Sony
 PRODUCT_MANUFACTURER := Sony
 PRODUCT_MODEL := Xperia M
